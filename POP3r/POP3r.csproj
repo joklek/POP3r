@@ -51,6 +51,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pop3\CommandHandler.cs" />
+    <Compile Include="Pop3\Interfaces\ICommandHandler.cs" />
+    <Compile Include="Pop3\Commands\Commands.cs" />
+    <Compile Include="Pop3\Commands\CommandsExtension.cs" />
+    <Compile Include="Pop3\Interfaces\IMessage.cs" />
+    <Compile Include="Pop3\Message.cs" />
+    <Compile Include="Pop3\ServerResponses\MaildropInfo.cs" />
+    <Compile Include="Pop3\ServerResponses\MessageInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -61,7 +69,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="AppSettings.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
