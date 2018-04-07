@@ -5,7 +5,7 @@ namespace POP3r.Pop3
 {
     public static class CommandsExtension
     {
-        public static string GetFormat(this Commands self)
+        public static string GetCommandText(this Commands self)
         {
             switch (self)
             {
@@ -27,6 +27,8 @@ namespace POP3r.Pop3
                     return "TOP {0} {1}";
                 case Commands.UIDL:
                     return "UIDL {0}";
+                case Commands.RSET:
+                    return "RSET";
                 case Commands.QUIT:
                     return "QUIT";
                 default:

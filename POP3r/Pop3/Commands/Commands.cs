@@ -12,6 +12,7 @@
         NOOP,
         TOP,
         UIDL,
+        RSET,
         QUIT
     }
 }
