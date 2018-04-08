@@ -9,12 +9,12 @@ namespace POP3r.Pop3.Interfaces
         void LogoutFromServer(); // QUIT
         MaildropInfo GetMailboxInfo(); //STAT
         List<MessageInfo> GetAllMessagesInfo(); // LIST
-        MessageInfo GetMessageInfo(uint index);  // LIST
-        Message GetMessageBody(uint index);  // RETR
-        void DeleteMessage(uint index); // DELE
+        MessageInfo GetMessageInfo(int index);  // LIST
+        Message GetMessageBody(int index);  // RETR
+        void DeleteMessage(int index); // DELE
         void ResetSession(); // RSET
         bool UserIsLoggedIn(); // NOOP
-        string GetUniqueId(uint index); // UIDL
-        Message GetPartialMessageWithHeader(uint index, uint numberOfLines); // TOP
+        string GetUniqueId(int index); // UIDL
+        Message GetPartialMessageWithHeader(int index, int numberOfLines); // TOP
     }
 }
