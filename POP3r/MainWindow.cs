@@ -8,5 +8,10 @@ namespace POP3r
         {
             InitializeComponent();
         }
+
+        private void LoginButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
