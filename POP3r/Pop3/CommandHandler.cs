@@ -38,9 +38,10 @@ namespace POP3r.Pop3
             return new MaildropInfo(response.Body);
         }
 
+        // TODO implement
         public List<MessageInfo> GetAllMessagesInfo()
         {
-            string.Format(Commands.LIST.GetCommandText(), "");
+            var t = ExcecuteCommand(Commands.LIST, string.Format(Commands.LIST.GetCommandText(), ""));
             throw new System.NotImplementedException();
         }
 
@@ -76,8 +77,7 @@ namespace POP3r.Pop3
 
         public Message GetPartialMessageWithHeader(int index, int numberOfLines)
         {
-            string.Format(Commands.TOP.GetCommandText(), index, numberOfLines);
-            throw new System.NotImplementedException();
+            return new Message(ExcecuteCommand(Commands.TOP, string.Format(Commands.TOP.GetCommandText(), index, numberOfLines)));
         }
 
         private Response ExcecuteCommand(Commands commandType, string commandBody)
