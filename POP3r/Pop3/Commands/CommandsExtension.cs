@@ -16,7 +16,7 @@ namespace POP3r.Pop3
                 case Commands.STAT:
                     return "STAT";
                 case Commands.RETR:
-                    return "RETR";
+                    return "RETR {0}";
                 case Commands.DELE:
                     return "DELE";
                 case Commands.LIST:
