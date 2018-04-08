@@ -111,6 +111,7 @@
             this.EmailListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.EmailListView.Size = new System.Drawing.Size(361, 428);
             this.EmailListView.TabIndex = 1;
+            this.EmailListView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EmailListView_CellContentClick);
             // 
             // Sender
             // 

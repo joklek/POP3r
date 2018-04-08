@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using POP3r.Pop3.Interfaces;
 using POP3r.Pop3.ServerResponses;
 
@@ -32,6 +33,25 @@ namespace POP3r.Pop3
             ParseHeader(Header);
 
             Body = response.Body.Substring(indexOfSplit + "\r\n\r\n".Length);
+            Body = GetPropperHtml(Body);
+        }
+
+        private string GetPropperHtml(string body)
+        {
+            var markerOfMiscData = string.Empty;
+            var collectionOfMarkers = new List<string> { "text/html", "text/plain"};
+            foreach (var marker in collectionOfMarkers)
+            {
+                if (body.Contains(marker))
+                {
+                    markerOfMiscData = marker;
+                }
+            }
+            if(markerOfMiscData == string.Empty) return body;
+
+            var htmlDocument = body.Substring(body.IndexOf(markerOfMiscData, StringComparison.Ordinal) + markerOfMiscData.Length);
+            htmlDocument = htmlDocument.Substring(htmlDocument.IndexOf("\r\n", StringComparison.Ordinal) + "\r\n".Length);
+            return htmlDocument;
         }
 
         private void ParseHeader(string emailHeader)

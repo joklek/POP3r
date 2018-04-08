@@ -56,5 +56,10 @@ namespace POP3r
                 EmailListView.Rows.Add(email.Sender, email.Subject);
             }
         }
+
+        private void EmailListView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MailWindow.DocumentText = _listOfMail[e.RowIndex].Body;
+        }
     }
 }
