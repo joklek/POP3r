@@ -10,7 +10,7 @@ namespace POP3r.Pop3.ServerResponses
 
         public MessageInfo(string responseBody)
         {
-            if (!Regex.IsMatch(responseBody, @"^\d* \d*\s"))
+            if (!Regex.IsMatch(responseBody, @"^\d* \d*"))
                 throw new Exception("Incorrect response string provided: " + responseBody);
 
             var splitResponse = responseBody.Split(' ');
