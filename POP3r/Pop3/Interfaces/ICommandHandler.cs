@@ -10,7 +10,7 @@ namespace POP3r.Pop3.Interfaces
         MaildropInfo GetMailboxInfo(); //STAT
         List<MessageInfo> GetAllMessagesInfo(); // LIST
         MessageInfo GetMessageInfo(int index);  // LIST
-        Message GetMessageBody(int index);  // RETR
+        Message GetMessage(int index);  // RETR
         void DeleteMessage(int index); // DELE
         void ResetSession(); // RSET
         bool UserIsLoggedIn(); // NOOP

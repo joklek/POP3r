@@ -31,7 +31,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.MailWindow = new System.Windows.Forms.WebBrowser();
-            this.MailList = new System.Windows.Forms.ListView();
+            this.EmailListView = new System.Windows.Forms.DataGridView();
+            this.Sender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +42,7 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmailListView)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,10 +66,10 @@
             // 
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.19465F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.80535F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.8459F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.1541F));
             this.tableLayoutPanel2.Controls.Add(this.MailWindow, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.MailList, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.EmailListView, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 63);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -78,27 +81,54 @@
             // MailWindow
             // 
             this.MailWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MailWindow.Location = new System.Drawing.Point(251, 3);
+            this.MailWindow.Location = new System.Drawing.Point(370, 3);
             this.MailWindow.MinimumSize = new System.Drawing.Size(20, 20);
             this.MailWindow.Name = "MailWindow";
-            this.MailWindow.Size = new System.Drawing.Size(979, 428);
+            this.MailWindow.Size = new System.Drawing.Size(860, 428);
             this.MailWindow.TabIndex = 0;
             // 
-            // MailList
+            // EmailListView
             // 
-            this.MailList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MailList.Location = new System.Drawing.Point(3, 3);
-            this.MailList.Name = "MailList";
-            this.MailList.Size = new System.Drawing.Size(242, 428);
-            this.MailList.TabIndex = 1;
-            this.MailList.UseCompatibleStateImageBehavior = false;
+            this.EmailListView.AllowUserToAddRows = false;
+            this.EmailListView.AllowUserToDeleteRows = false;
+            this.EmailListView.AllowUserToResizeColumns = false;
+            this.EmailListView.AllowUserToResizeRows = false;
+            this.EmailListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EmailListView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.EmailListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EmailListView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Sender,
+            this.Subject});
+            this.EmailListView.Location = new System.Drawing.Point(3, 3);
+            this.EmailListView.MultiSelect = false;
+            this.EmailListView.Name = "EmailListView";
+            this.EmailListView.ReadOnly = true;
+            this.EmailListView.RowHeadersVisible = false;
+            this.EmailListView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.EmailListView.Size = new System.Drawing.Size(361, 428);
+            this.EmailListView.TabIndex = 1;
+            // 
+            // Sender
+            // 
+            this.Sender.HeaderText = "From";
+            this.Sender.Name = "Sender";
+            this.Sender.ReadOnly = true;
+            this.Sender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Subject
+            // 
+            this.Subject.HeaderText = "Subject";
+            this.Subject.Name = "Subject";
+            this.Subject.ReadOnly = true;
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.01329F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.98671F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 630F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 634F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.UsernameBox, 0, 1);
@@ -125,7 +155,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 0);
+            this.label2.Location = new System.Drawing.Point(278, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 1;
@@ -136,21 +166,22 @@
             this.UsernameBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UsernameBox.Location = new System.Drawing.Point(3, 29);
             this.UsernameBox.Name = "UsernameBox";
-            this.UsernameBox.Size = new System.Drawing.Size(271, 20);
+            this.UsernameBox.Size = new System.Drawing.Size(269, 20);
             this.UsernameBox.TabIndex = 2;
             // 
             // PasswordBox
             // 
             this.PasswordBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PasswordBox.Location = new System.Drawing.Point(280, 29);
+            this.PasswordBox.Location = new System.Drawing.Point(278, 29);
             this.PasswordBox.Name = "PasswordBox";
-            this.PasswordBox.Size = new System.Drawing.Size(319, 20);
+            this.PasswordBox.PasswordChar = '*';
+            this.PasswordBox.Size = new System.Drawing.Size(317, 20);
             this.PasswordBox.TabIndex = 3;
             this.PasswordBox.WordWrap = false;
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(605, 29);
+            this.LoginButton.Location = new System.Drawing.Point(601, 29);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(75, 22);
             this.LoginButton.TabIndex = 4;
@@ -170,6 +201,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.EmailListView)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
@@ -182,13 +214,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.WebBrowser MailWindow;
-        private System.Windows.Forms.ListView MailList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox UsernameBox;
         private System.Windows.Forms.TextBox PasswordBox;
         private System.Windows.Forms.Button LoginButton;
+        private System.Windows.Forms.DataGridView EmailListView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
     }
 }
 

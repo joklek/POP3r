@@ -6,11 +6,17 @@ namespace POP3r.Pop3
 {
     public class Message : IMessage
     {
-        public string Header { get; set; }
-        public string Body { get; set; }
-        public bool IsComplete { get; set; }
-        public MessageInfo Info { get; }
-        public int SizeInOctets { get; }
+        public string Header { get; private set; }
+        public string Body { get; private set; }
+        public bool IsComplete { get; private set; }
+        public MessageInfo Info { get; private set; }
+        public int SizeInOctets { get; private set; }
+
+        public string Sender { get; private set; }
+        public string Recipient { get; private set; }
+        public string Subject { get; private set; }
+        
+        public string DateSent { get; private set; }
 
         public Message(Response response)
         {
@@ -25,12 +31,17 @@ namespace POP3r.Pop3
                 Header = Header.Substring(Header.IndexOf(octetsSplitText, StringComparison.Ordinal) + octetsSplitText.Length);
             }
 
+            ParseHeader(Header);
+
             Body = response.Body.Substring(indexOfSplit + "\r\n\r\n".Length);
         }
 
-        public Message(MessageInfo info)
+        private void ParseHeader(string emailHeader)
         {
-            Info = info;
+            Sender = HeaderParser.GetSender(emailHeader);
+            Recipient = HeaderParser.GetRecipient(emailHeader);
+            Subject = HeaderParser.GetSubject(emailHeader);
+            DateSent = HeaderParser.GetDate(emailHeader);
         }
     }
 }

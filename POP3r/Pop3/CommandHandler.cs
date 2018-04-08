@@ -50,7 +50,7 @@ namespace POP3r.Pop3
             return new MessageInfo(ExcecuteCommand(Commands.LIST, string.Format(Commands.LIST.GetCommandText(), index)).Body);
         }
 
-        public Message GetMessageBody(int index)
+        public Message GetMessage(int index)
         {
             return new Message(ExcecuteCommand(Commands.RETR, string.Format(Commands.RETR.GetCommandText(), index)));
         }

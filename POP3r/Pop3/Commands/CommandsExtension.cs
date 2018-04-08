@@ -35,5 +35,19 @@ namespace POP3r.Pop3
                     throw new ArgumentOutOfRangeException(nameof(self), self, Resources.CommandsExtension_GetFormat_invalid_enum_type);
             }
         }
+
+        public static bool CommandValidInState(this Commands self, SessionStates state)
+        {
+            switch (self)
+            {
+                case Commands.QUIT:
+                    return true;
+                case Commands.USER:
+                case Commands.PASS:
+                    return state == SessionStates.AUTHORIZATION;
+            }
+
+            return state == SessionStates.TRANSACTION;
+        }
     }
 }
