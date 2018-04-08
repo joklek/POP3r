@@ -30,10 +30,21 @@ namespace POP3r
             }
         }
 
-        public List<IMessage> FetchMailList()
+        public List<Message> FetchMailList()
         {
-            throw new Exception();
-            _commandHandler.GetAllMessagesInfo();
+            var numberOfMessages = _commandHandler.GetMailboxInfo().NumberOfMessages;
+            var listOfMessages = new List<Message>();
+            for (var i = 10; i > 0; i--)
+            {
+                try
+                {
+                    listOfMessages.Add(_commandHandler.GetMessage(numberOfMessages - i));
+                }
+                catch
+                {
+                }
+            }
+            return listOfMessages;
         }
 
         public void Logout()

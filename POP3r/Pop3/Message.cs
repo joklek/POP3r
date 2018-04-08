@@ -11,11 +11,9 @@ namespace POP3r.Pop3
         public bool IsComplete { get; private set; }
         public MessageInfo Info { get; private set; }
         public int SizeInOctets { get; private set; }
-
         public string Sender { get; private set; }
         public string Recipient { get; private set; }
         public string Subject { get; private set; }
-        
         public string DateSent { get; private set; }
 
         public Message(Response response)

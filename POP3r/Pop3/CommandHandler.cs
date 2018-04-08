@@ -38,8 +38,7 @@ namespace POP3r.Pop3
             return new MaildropInfo(response.Body);
         }
 
-        // TODO implement
-        public List<MessageInfo> GetAllMessagesInfo()
+        public List<IMessage> GetAllMessagesInfo()
         {
             var t = ExcecuteCommand(Commands.LIST, string.Format(Commands.LIST.GetCommandText(), ""));
             throw new System.NotImplementedException();

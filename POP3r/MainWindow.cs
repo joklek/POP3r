@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
-using POP3r.Pop3.Interfaces;
+using Message = POP3r.Pop3.Message;
 
 namespace POP3r
 {
@@ -12,7 +12,7 @@ namespace POP3r
         private readonly string _port = ConfigurationManager.AppSettings["port"];
 
         private MailHandler _handler;
-        private List<IMessage> _listOfMail;
+        private List<Message> _listOfMail;
 
         public MainWindow()
         {
@@ -36,7 +36,7 @@ namespace POP3r
                 Console.WriteLine(exception);
                 throw;
             }
-            //UpadateMailList();
+            UpadateMailList();
         }
 
         private void UpadateMailList()
@@ -53,6 +53,7 @@ namespace POP3r
 
             foreach (var email in _listOfMail)
             {
+                EmailListView.Rows.Add(email.Sender, email.Subject);
             }
         }
     }

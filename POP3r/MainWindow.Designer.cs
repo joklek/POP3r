@@ -40,6 +40,7 @@
             this.UsernameBox = new System.Windows.Forms.TextBox();
             this.PasswordBox = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmailListView)).BeginInit();
@@ -107,6 +108,7 @@
             this.EmailListView.ReadOnly = true;
             this.EmailListView.RowHeadersVisible = false;
             this.EmailListView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.EmailListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.EmailListView.Size = new System.Drawing.Size(361, 428);
             this.EmailListView.TabIndex = 1;
             // 
@@ -125,15 +127,17 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnCount = 4;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.01329F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.98671F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 634F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 575F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.UsernameBox, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.PasswordBox, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.LoginButton, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.RefreshButton, 3, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -155,7 +159,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(278, 0);
+            this.label2.Location = new System.Drawing.Point(268, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 1;
@@ -166,28 +170,37 @@
             this.UsernameBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UsernameBox.Location = new System.Drawing.Point(3, 29);
             this.UsernameBox.Name = "UsernameBox";
-            this.UsernameBox.Size = new System.Drawing.Size(269, 20);
+            this.UsernameBox.Size = new System.Drawing.Size(259, 20);
             this.UsernameBox.TabIndex = 2;
             // 
             // PasswordBox
             // 
             this.PasswordBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PasswordBox.Location = new System.Drawing.Point(278, 29);
+            this.PasswordBox.Location = new System.Drawing.Point(268, 29);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.PasswordChar = '*';
-            this.PasswordBox.Size = new System.Drawing.Size(317, 20);
+            this.PasswordBox.Size = new System.Drawing.Size(306, 20);
             this.PasswordBox.TabIndex = 3;
             this.PasswordBox.WordWrap = false;
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(601, 29);
+            this.LoginButton.Location = new System.Drawing.Point(580, 29);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(75, 22);
             this.LoginButton.TabIndex = 4;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(1155, 29);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(74, 22);
+            this.RefreshButton.TabIndex = 5;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -223,6 +236,7 @@
         private System.Windows.Forms.DataGridView EmailListView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sender;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }
 

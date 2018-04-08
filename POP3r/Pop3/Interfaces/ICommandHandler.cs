@@ -8,7 +8,7 @@ namespace POP3r.Pop3.Interfaces
         void LoginToServer(string username, string password);  // USER ir PASS
         void LogoutFromServer(); // QUIT
         MaildropInfo GetMailboxInfo(); //STAT
-        List<MessageInfo> GetAllMessagesInfo(); // LIST
+        List<IMessage> GetAllMessagesInfo(); // LIST
         MessageInfo GetMessageInfo(int index);  // LIST
         Message GetMessage(int index);  // RETR
         void DeleteMessage(int index); // DELE
