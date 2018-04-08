@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using POP3r.Pop3.Interfaces;
 using POP3r.Pop3.ServerResponses;
 
@@ -19,14 +21,36 @@ namespace POP3r.Pop3
             _socket = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
         }
 
-        public Response ExcecuteCommand(string command)
+        private void CheckIfConnected()
         {
             if (!_socket.Connected)
             {
                 throw new Exception("Can't excecute commands when not connected to server");
             }
+        }
+
+        public Response ExcecuteCommand(string command)
+        {
+            CheckIfConnected();
             SendCommand(command);
-            return GetResponse();
+            return new Response(GetResponse());
+        }
+
+        public Response ExcecuteCommandMultiline(string command)
+        {
+            CheckIfConnected();
+            SendCommand(command);
+            return new Response(GetMultilineResponse());
+        }
+
+        private string GetMultilineResponse()
+        {
+            var result = string.Empty;
+            do
+            {
+                result += GetResponse();
+            } while (!result.EndsWith("\r\n.\r\n"));
+            return result;
         }
 
         public void OpenConnection()
@@ -39,7 +63,7 @@ namespace POP3r.Pop3
             try
             {
                 _socket.Connect(_mailEndpoint);
-                var response = GetResponse();
+                var response = new Response(GetResponse());
                 if (!response.IsOk)
                 {
                     throw new Exception();
@@ -56,13 +80,13 @@ namespace POP3r.Pop3
             _socket.Send(Encoding.UTF8.GetBytes(command + "\r\n"));
         }
 
-        private Response GetResponse()
+        private string GetResponse()
         {
             var bytes = new byte[512];
             var buffSize = _socket.Receive(bytes);
             var receivedString = Encoding.UTF8.GetString(bytes, 0, buffSize);
             Debug.Print(receivedString.Trim());
-            return new Response(receivedString);
+            return receivedString;
         }
 
         public void CloseConnection()
