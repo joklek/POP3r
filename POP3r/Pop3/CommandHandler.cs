@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using POP3r.Pop3.Interfaces;
 using POP3r.Pop3.ServerResponses;
@@ -7,68 +8,88 @@ namespace POP3r.Pop3
 {
     public class CommandHandler : ICommandHandler
     {
-        private IPAddress IpAddress;
-        private uint Port;
+        private ICommunicator _communicator;
 
-        public CommandHandler(string ipAddress, uint port)
+        public CommandHandler(string ip, int port)
         {
-            IpAddress = IPAddress.Parse(ipAddress);
-            Port = port;
+            _communicator = new ServerCommunicator(IPAddress.Parse(ip), port);
         }
 
         public void LoginToServer(string username, string password)
         {
-            throw new System.NotImplementedException();
+            var loginUsernameCommand = string.Format(Commands.USER.GetCommandText(), username);
+            var loginPasswordCommand = string.Format(Commands.PASS.GetCommandText(), password);
+
+            _communicator.OpenConnection();
+
+            SendCommand(loginUsernameCommand);
+            SendCommand(loginPasswordCommand);
         }
 
         public void LogoutFromServer()
         {
-            throw new System.NotImplementedException();
+            SendCommand(Commands.QUIT.GetCommandText());
+            _communicator.CloseConnection();
         }
 
         public MaildropInfo GetMailboxInfo()
         {
-            throw new System.NotImplementedException();
+            var response = SendCommand(Commands.STAT.GetCommandText());
+            return new MaildropInfo(response.Body);
         }
 
         public List<MessageInfo> GetAllMessagesInfo()
         {
+            string.Format(Commands.LIST.GetCommandText(), "");
             throw new System.NotImplementedException();
         }
 
-        public MessageInfo GetMessageInfo(uint index)
+        public MessageInfo GetMessageInfo(int index)
         {
+            return new MessageInfo(SendCommand(string.Format(Commands.LIST.GetCommandText(), index)).Body);
+        }
+
+        public Message GetMessageBody(int index)
+        {
+            string.Format(Commands.RETR.GetCommandText(), index);
             throw new System.NotImplementedException();
         }
 
-        public Message GetMessageBody(uint index)
+        public void DeleteMessage(int index)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteMessage(uint index)
-        {
-            throw new System.NotImplementedException();
+            SendCommand(string.Format(Commands.DELE.GetCommandText(), index));
         }
 
         public void ResetSession()
         {
-            throw new System.NotImplementedException();
+            SendCommand(Commands.RSET.GetCommandText());
         }
 
         public bool UserIsLoggedIn()
         {
+            return SendCommand(Commands.NOOP.GetCommandText()).IsOk;
+        }
+
+        public string GetUniqueId(int index)
+        {
+            return SendCommand(string.Format(Commands.UIDL.GetCommandText(), index)).Body;
+        }
+
+        public Message GetPartialMessageWithHeader(int index, int numberOfLines)
+        {
+            string.Format(Commands.TOP.GetCommandText(), index, numberOfLines);
             throw new System.NotImplementedException();
         }
 
-        public string GetUniqueId(uint index)
+        private Response SendCommand(string command)
         {
-            throw new System.NotImplementedException();
-        }
+            var commandResponse = _communicator.ExcecuteCommand(command);
+            if (!commandResponse.IsOk)
+            {
+                throw new Exception("Server returned error with message: " + commandResponse.Body);
+            }
 
-        public Message GetPartialMessageWithHeader(uint index, uint numberOfLines)
-        {
-            throw new System.NotImplementedException();
+            return commandResponse;
         }
     }
 }
