@@ -9,6 +9,7 @@ namespace POP3r
     {
         private CommandHandler _commandHandler;
         public SessionStates State { get; private set; }
+        private MailboxInfo _mailboxInfo;
 
         public MailHandler(string ipAddress, string port)
         {
@@ -32,13 +33,17 @@ namespace POP3r
 
         public List<Message> FetchMailList()
         {
-            var numberOfMessages = _commandHandler.GetMailboxInfo().NumberOfMessages;
+            _mailboxInfo = _commandHandler.GetAllMessagesInfo();
+            var numberOfMessages = _mailboxInfo.MailboxSize;
+
             var listOfMessages = new List<Message>();
-            for (var i = 10; i > 0; i--)
+            for (var i = 0; i < 10; i++)
             {
                 try
                 {
-                    listOfMessages.Add(_commandHandler.GetMessage(numberOfMessages - i));
+                    var message = _commandHandler.GetMessage(numberOfMessages - i);
+                    message.IndexInMailList = _mailboxInfo.ListOfMessageInfo[i].MessageId; 
+                    listOfMessages.Add(message);
                 }
                 catch
                 {
@@ -59,7 +64,16 @@ namespace POP3r
                 Console.WriteLine(e);
                 throw;
             }
-            
+        }
+
+        public void DeleteMessage(int index)
+        {
+            _commandHandler.DeleteMessage(index);
+        }
+
+        public int GetAmountOfMail()
+        {
+            return _commandHandler.GetMailboxInfo().NumberOfMessages;
         }
     }
 }

@@ -38,10 +38,10 @@ namespace POP3r.Pop3
             return new MaildropInfo(response.Body);
         }
 
-        public List<IMessage> GetAllMessagesInfo()
+        public MailboxInfo GetAllMessagesInfo()
         {
-            var t = ExcecuteCommand(Commands.LIST, string.Format(Commands.LIST.GetCommandText(), ""));
-            throw new System.NotImplementedException();
+            var response = ExcecuteCommand(Commands.LIST, string.Format(Commands.LIST.GetCommandText(), ""));
+            return new MailboxInfo(response);
         }
 
         public MessageInfo GetMessageInfo(int index)

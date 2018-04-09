@@ -60,6 +60,7 @@
     <Compile Include="Pop3\Commands\CommandsExtension.cs" />
     <Compile Include="Pop3\Interfaces\ICommunicator.cs" />
     <Compile Include="Pop3\Interfaces\IMessage.cs" />
+    <Compile Include="Pop3\MailboxInfo.cs" />
     <Compile Include="Pop3\Message.cs" />
     <Compile Include="Pop3\ServerCommunicator.cs" />
     <Compile Include="Pop3\ServerResponses\MaildropInfo.cs" />

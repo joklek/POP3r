@@ -16,6 +16,8 @@ namespace POP3r.Pop3
         public string Recipient { get; private set; }
         public string Subject { get; private set; }
         public string DateSent { get; private set; }
+        public int IndexInMailList { get; set; }
+        public string Uuid { get; private set; }
 
         public Message(Response response)
         {

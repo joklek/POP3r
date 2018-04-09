@@ -41,6 +41,7 @@
             this.PasswordBox = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EmailListView)).BeginInit();
@@ -81,6 +82,7 @@
             // 
             // MailWindow
             // 
+            this.MailWindow.AllowWebBrowserDrop = false;
             this.MailWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MailWindow.Location = new System.Drawing.Point(370, 3);
             this.MailWindow.MinimumSize = new System.Drawing.Size(20, 20);
@@ -132,13 +134,14 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.01329F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.98671F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 575F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.UsernameBox, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.PasswordBox, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.LoginButton, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.RefreshButton, 3, 1);
+            this.tableLayoutPanel3.Controls.Add(this.RefreshButton, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.DeleteButton, 3, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -180,13 +183,13 @@
             this.PasswordBox.Location = new System.Drawing.Point(268, 29);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.PasswordChar = '*';
-            this.PasswordBox.Size = new System.Drawing.Size(306, 20);
+            this.PasswordBox.Size = new System.Drawing.Size(304, 20);
             this.PasswordBox.TabIndex = 3;
             this.PasswordBox.WordWrap = false;
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(580, 29);
+            this.LoginButton.Location = new System.Drawing.Point(578, 29);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(75, 22);
             this.LoginButton.TabIndex = 4;
@@ -196,12 +199,23 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(1155, 29);
+            this.RefreshButton.Location = new System.Drawing.Point(1153, 3);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(74, 22);
+            this.RefreshButton.Size = new System.Drawing.Size(74, 20);
             this.RefreshButton.TabIndex = 5;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(1153, 29);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 22);
+            this.DeleteButton.TabIndex = 6;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // MainWindow
             // 
@@ -238,6 +252,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sender;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }
 
