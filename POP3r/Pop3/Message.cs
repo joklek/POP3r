@@ -50,7 +50,7 @@ namespace POP3r.Pop3
             if(markerOfMiscData == string.Empty) return body;
 
             var htmlDocument = body.Substring(body.IndexOf(markerOfMiscData, StringComparison.Ordinal) + markerOfMiscData.Length);
-            htmlDocument = htmlDocument.Substring(htmlDocument.IndexOf("\r\n", StringComparison.Ordinal) + "\r\n".Length);
+            htmlDocument = htmlDocument.Substring(htmlDocument.IndexOf("\r\n\r\n", StringComparison.Ordinal) + "\r\n\r\n".Length);
             return htmlDocument;
         }
 
