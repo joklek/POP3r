@@ -75,6 +75,7 @@ namespace POP3r.Pop3
 
         private void SendCommand(string command)
         {
+            Debug.Print(command);
             _socket.Send(Encoding.UTF8.GetBytes(command + "\r\n"));
         }
 
